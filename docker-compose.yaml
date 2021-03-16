@@ -1,0 +1,16 @@
+version: "2"
+
+services:
+  wordpress:
+    build: .
+    ports: 
+     - 8080:80
+    environment:
+      WORDPRESS_DB_HOST: host
+      WORDPRESS_DB_USER: username
+      WORDPRESS_DB_PASSWORD: password
+      WORDPRESS_DB_NAME: database
+      WORDPRESS_DEBUG: 1
+      WORDPRESS_CONFIG_EXTRA: |
+        define('MYSQL_CLIENT_FLAGS', MYSQLI_CLIENT_SSL | MYSQLI_CLIENT_SSL_DONT_VERIFY_SERVER_CERT);
+        define('MYSQL_SSL_CA', '/var/www/bin/BaltimoreCyberTrustRoot.crt.pem');
